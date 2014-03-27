@@ -66,6 +66,8 @@ def scrape(url):
 
 		# return the list of tuples for later parsing
 		pwd7_response.close()
+		if not usernames:
+			print "No results for", url, "!"
 		return zip(usernames, passwords, rates, votes)
 	except urllib2.HTTPError, e:
 		print "Error code: ", e.code
