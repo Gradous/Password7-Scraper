@@ -47,7 +47,7 @@ def scrape(url):
 				for td in BeautifulSoup(str(table)).tr.findAll("td", \
 					recursive=False, limit=2):
 					# rating/votes
-					if "%" in td.text:
+					if "success rate" in td.text:
 						rate_spl = str(td.text).strip().split('%')
 						rates.append(rate_spl[0] + '% success rate')
 						votes.append(rate_spl[1].strip().split('(')[1][:-1])
@@ -56,7 +56,7 @@ def scrape(url):
 						counter = 0
 						for user_pass in BeautifulSoup(str(td)).table\
 						.findAll("tr", recursive=False, limit=2):
-							user_pass_spl = str(user_pass.text).split(':')
+							user_pass_spl = unicode(user_pass.text).split(':')
 							# user
 							if counter == 0:
 								usernames.append(user_pass_spl[1].strip())
